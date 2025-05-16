@@ -38,6 +38,20 @@ require("lazy").setup({
         require("telescope").setup()
       end,
     },
+
+	 -- Treesitter plugin added here
+    {
+      "nvim-treesitter/nvim-treesitter",
+      build = ":TSUpdate",
+      config = function()
+        require("nvim-treesitter.configs").setup({
+          ensure_installed = { "lua", "c", "zig", "cpp", "python", "javascript", "typescript", "bash", "json", "yaml", "toml", "markdown", "gitignore", "go", "vim" },
+          highlight = { enable = true, additional_vim_regex_highlighting = false },
+          indent = { enable = true },
+        })
+      end,
+    },
+
   },
   -- global lazy.nvim settings
   install = { colorscheme = { "habamax" } },
