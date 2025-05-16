@@ -25,6 +25,9 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     -- Your other plugins here if any
+    
+    -- Horizon color
+    { "akinsho/horizon.nvim", version = "*" },
 
     -- Add Telescope plugin
     {
@@ -46,3 +49,19 @@ vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
+
+-- Color
+vim.cmd.colorscheme('horizon')
+vim.o.background = "dark"
+
+-- Lines
+vim.opt.nu = true
+vim.opt.relativenumber = true
+
+-- Tabs to 4 spaces
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+
+
+
