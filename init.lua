@@ -26,20 +26,35 @@ require("lazy").setup({
     -- Buffer auto completion
 	{ 
 	  "hrsh7th/nvim-cmp",
-      dependencies = { "hrsh7th/cmp-buffer" },
+      dependencies = {
+	    "hrsh7th/cmp-buffer",       -- buffer completions
+        "hrsh7th/cmp-nvim-lsp",     -- LSP completions
+        "neovim/nvim-lspconfig",    -- LSP client
+	  },
       config = function()
-        require("cmp").setup({
+        local cmp = require("cmp")
+        local lspconfig = require("lspconfig")
+        local cmp_nvim_lsp = require("cmp_nvim_lsp")
+				
+        cmp.setup({
 	 	  -- key mappings:
           mapping = {
-            ["<C-Space>"] = require("cmp").mapping.complete(),                 -- trigger completion menu
-            ["<CR>"]      = require("cmp").mapping.confirm({ select = true }), -- confirm selection
-            ["<Tab>"]     = require("cmp").mapping.select_next_item(),         -- next item
-            ["<S-Tab>"]   = require("cmp").mapping.select_prev_item(),         -- previous item
+            ["<C-Space>"] = cmp.mapping.complete(),                 -- trigger completion menu
+            ["<CR>"]      = cmp.mapping.confirm({ select = true }), -- confirm selection
+            ["<Tab>"]     = cmp.mapping.select_next_item(),         -- next item
+            ["<S-Tab>"]   = cmp.mapping.select_prev_item(),         -- previous item
           },
           sources = {
-            { name = "buffer" },
+		    { name = "nvim_lsp" },  -- LSP first
+            { name = "buffer" },    -- then buffer
           },
         })
+
+      -- 2) Enable Python LSP (pyright) with cmp capabilities
+      lspconfig.pyright.setup({
+        capabilities = cmp_nvim_lsp.default_capabilities(),
+      })
+
       end,
     },
 	
