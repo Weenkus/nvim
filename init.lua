@@ -22,7 +22,27 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     -- Your other plugins here if any
-    
+		
+    -- Buffer auto completion
+	{ 
+	  "hrsh7th/nvim-cmp",
+      dependencies = { "hrsh7th/cmp-buffer" },
+      config = function()
+        require("cmp").setup({
+	 	  -- key mappings:
+          mapping = {
+            ["<C-Space>"] = require("cmp").mapping.complete(),                 -- trigger completion menu
+            ["<CR>"]      = require("cmp").mapping.confirm({ select = true }), -- confirm selection
+            ["<Tab>"]     = require("cmp").mapping.select_next_item(),         -- next item
+            ["<S-Tab>"]   = require("cmp").mapping.select_prev_item(),         -- previous item
+          },
+          sources = {
+            { name = "buffer" },
+          },
+        })
+      end,
+    },
+	
     -- Horizon color
     { "akinsho/horizon.nvim", version = "*" },
 
