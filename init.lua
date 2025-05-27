@@ -24,10 +24,10 @@ require("lazy").setup({
     -- Your other plugins here if any
 		
     -- Buffer auto completion
-	{ 
-	  "hrsh7th/nvim-cmp",
+    { 
+      "hrsh7th/nvim-cmp",
       dependencies = {
-	    "hrsh7th/cmp-buffer",       -- buffer completions
+	"hrsh7th/cmp-buffer",       -- buffer completions
         "hrsh7th/cmp-nvim-lsp",     -- LSP completions
         "neovim/nvim-lspconfig",    -- LSP client
 	  },
@@ -37,7 +37,7 @@ require("lazy").setup({
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
 				
         cmp.setup({
-	 	  -- key mappings:
+	  -- key mappings:
           mapping = {
             ["<C-Space>"] = cmp.mapping.complete(),                 -- trigger completion menu
             ["<CR>"]      = cmp.mapping.confirm({ select = true }), -- confirm selection
@@ -45,7 +45,7 @@ require("lazy").setup({
             ["<S-Tab>"]   = cmp.mapping.select_prev_item(),         -- previous item
           },
           sources = {
-		    { name = "nvim_lsp" },  -- LSP first
+	    { name = "nvim_lsp" },  -- LSP first
             { name = "buffer" },    -- then buffer
           },
         })
