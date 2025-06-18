@@ -81,7 +81,10 @@ require("lazy").setup({
     {
       "nvim-telescope/telescope.nvim",
       tag = "0.1.5", -- pinned version
-      dependencies = { "nvim-lua/plenary.nvim" },
+      dependencies = { 
+        "nvim-lua/plenary.nvim",
+        "BurntSushi/ripgrep"
+      },
       config = function()
         require("telescope").setup()
       end,
